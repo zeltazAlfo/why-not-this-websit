@@ -33,6 +33,7 @@ body {
     border: none;
     border-radius: 25px;
     text-decoration: none;
+    margin: 10px;
 }
 
 /* Main container */
@@ -54,21 +55,56 @@ body {
 /* Horizontal scrollable articles section */
 .scrollable-articles {
     display: flex;
-    gap: 15px;
+    gap: 50px;
     padding: 10px;
     overflow-x: auto; /* Enables horizontal scrolling */
-    white-space: nowrap; /* Prevents articles from wrapping to the next line */
     background-color: #e1f5fe;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: flex-start; /* Ensures articles align at the top */
 }
 
+/* Scrollbar styling */
+.scrollable-articles::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrollable-articles::-webkit-scrollbar-thumb {
+    background-color: #3a6073;
+    border-radius: 4px;
+}
+
+.scrollable-articles::-webkit-scrollbar-track {
+    background-color: #e1f5fe;
+}
+
+/* Article Card Design */
 .article-item {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    min-width: 300px; /* Set minimum width to keep items consistent */
+    height:auto;
+    width: 100%; /* Set minimum width to keep items consistent */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden; /* Prevent content from overflowing vertically */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+/* Allow Text to Wrap */
+.article-item p {
+    flex-grow: 1; /* Allow the paragraph to grow and take available space */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* Allow text to wrap to the next line */
+}
+
+/* Hover Effect for Article Cards */
+.article-item:hover {
+    transform: scale(1.02); /* Slight zoom effect */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Article Links and Text */
@@ -96,5 +132,13 @@ footer {
 
     .article-item {
         min-width: 250px; /* Reduce article width on smaller screens */
+    }
+}
+
+/* Further reduce card width for smaller screens */
+@media (max-width: 600px) {
+    .article-item {
+        width: 200px;
+        height: auto;
     }
 }
